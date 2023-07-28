@@ -2,7 +2,7 @@
 
 namespace IDGS903_Api.Models
 {
-	public class proveedores
+	public class proveedor
 	{
 		[Key]
 		public int Id { get; set; }

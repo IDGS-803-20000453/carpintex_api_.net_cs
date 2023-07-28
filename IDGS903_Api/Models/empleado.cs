@@ -2,7 +2,7 @@
 
 namespace IDGS903_Api.Models
 {
-    public class empleados
+    public class empleado
     {
 
         [Key]

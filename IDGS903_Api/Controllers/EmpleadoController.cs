@@ -9,12 +9,12 @@ namespace IDGS903_Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class GruposController : Controller
+    public class EmpleadoController : Controller
     {
 
         private readonly AppDbContext _context;
 
-        public GruposController(AppDbContext context) 
+        public EmpleadoController(AppDbContext context) 
         { 
         
             _context = context;
@@ -27,7 +27,7 @@ namespace IDGS903_Api.Controllers
         {
             try
             {
-                return Ok(_context.empleados.ToList());
+                return Ok(_context.empleado.ToList());
             }
             catch (Exception ex)
             {
@@ -36,14 +36,14 @@ namespace IDGS903_Api.Controllers
         }
 
 
-        [HttpGet("{id}", Name ="Empleados")]
+        [HttpGet("{id}", Name ="Empleado")]
         public ActionResult Get(int id)
         {
             try
             {
-                var alum = _context.empleados.FirstOrDefault(x => x.Id == id);
+                var empl = _context.empleado.FirstOrDefault(x => x.Id == id);
 
-                return Ok(alum);
+                return Ok(empl);
             }
             catch (Exception ex)
             {
@@ -53,14 +53,14 @@ namespace IDGS903_Api.Controllers
 
 
         [HttpPost]
-        public ActionResult<empleados> Post([FromBody] empleados empleados)
+        public ActionResult<empleado> Post([FromBody] empleado empleado)
         {
             try
             {
-                _context.empleados.Add(empleados);
+                _context.empleado.Add(empleado);
                 _context.SaveChanges();
 
-                return CreatedAtRoute("Empleados", new { id = empleados.Id }, empleados);
+                return CreatedAtRoute("Empleado", new { id = empleado.Id }, empleado);
             }
             catch (Exception ex)
             {
@@ -70,16 +70,16 @@ namespace IDGS903_Api.Controllers
 
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody]empleados alum) 
+        public ActionResult Put(int id, [FromBody]empleado empl) 
         {
             try
             {
-                if (alum.Id == id)
+                if (empl.Id == id)
                 {
-                    _context.Entry(alum).State = EntityState.Modified;
+                    _context.Entry(empl).State = EntityState.Modified;
                     _context.SaveChanges();
 
-                    return CreatedAtRoute("Empleados", new { id = alum.Id }, alum);
+                    return CreatedAtRoute("Empleado", new { id = empl.Id }, empl);
                 }
                 else
                 {
@@ -98,11 +98,11 @@ namespace IDGS903_Api.Controllers
         {
             try
             {
-                var alum = _context.empleados.FirstOrDefault(empleados => empleados.Id == id);
+                var empl = _context.empleado.FirstOrDefault(empleado => empleado.Id == id);
 
-                if (alum != null)
+                if (empl != null)
                 {
-                    _context.empleados.Remove(alum);
+                    _context.empleado.Remove(empl);
                     _context.SaveChanges();
 
                     return Ok(id);
