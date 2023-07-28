@@ -10,6 +10,8 @@ namespace IDGS903_Api.Context
 
         }
 
-        public DbSet<alumnos> alumnos { get; set; }
+        public DbSet<empleados> empleados { get; set; }
+        //public DbSet<empleados> empleados { get; set; }
+        public DbSet<proveedores> proveedores { get; set; }
     }
 }

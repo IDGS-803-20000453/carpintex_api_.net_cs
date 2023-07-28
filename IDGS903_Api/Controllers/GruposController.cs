@@ -27,7 +27,7 @@ namespace IDGS903_Api.Controllers
         {
             try
             {
-                return Ok(_context.alumnos.ToList());
+                return Ok(_context.empleados.ToList());
             }
             catch (Exception ex)
             {
@@ -36,12 +36,12 @@ namespace IDGS903_Api.Controllers
         }
 
 
-        [HttpGet("{id}", Name ="Alumnos")]
+        [HttpGet("{id}", Name ="Empleados")]
         public ActionResult Get(int id)
         {
             try
             {
-                var alum = _context.alumnos.FirstOrDefault(x => x.Id == id);
+                var alum = _context.empleados.FirstOrDefault(x => x.Id == id);
 
                 return Ok(alum);
             }
@@ -53,14 +53,14 @@ namespace IDGS903_Api.Controllers
 
 
         [HttpPost]
-        public ActionResult<alumnos> Post([FromBody] alumnos alumnos)
+        public ActionResult<empleados> Post([FromBody] empleados empleados)
         {
             try
             {
-                _context.alumnos.Add(alumnos);
+                _context.empleados.Add(empleados);
                 _context.SaveChanges();
 
-                return CreatedAtRoute("Alumnos", new { id = alumnos.Id }, alumnos);
+                return CreatedAtRoute("Empleados", new { id = empleados.Id }, empleados);
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace IDGS903_Api.Controllers
 
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody]alumnos alum) 
+        public ActionResult Put(int id, [FromBody]empleados alum) 
         {
             try
             {
@@ -79,7 +79,7 @@ namespace IDGS903_Api.Controllers
                     _context.Entry(alum).State = EntityState.Modified;
                     _context.SaveChanges();
 
-                    return CreatedAtRoute("Alumnos", new { id = alum.Id }, alum);
+                    return CreatedAtRoute("Empleados", new { id = alum.Id }, alum);
                 }
                 else
                 {
@@ -98,11 +98,11 @@ namespace IDGS903_Api.Controllers
         {
             try
             {
-                var alum = _context.alumnos.FirstOrDefault(alumnos => alumnos.Id == id);
+                var alum = _context.empleados.FirstOrDefault(empleados => empleados.Id == id);
 
                 if (alum != null)
                 {
-                    _context.alumnos.Remove(alum);
+                    _context.empleados.Remove(alum);
                     _context.SaveChanges();
 
                     return Ok(id);

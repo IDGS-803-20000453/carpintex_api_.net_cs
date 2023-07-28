@@ -2,7 +2,7 @@
 
 namespace IDGS903_Api.Models
 {
-    public class alumnos
+    public class empleados
     {
 
         [Key]
@@ -11,8 +11,8 @@ namespace IDGS903_Api.Models
 
         public string ? Nombre { get; set; }
 
-        public int ? Edad { get; set; }
+		public DateTime Fecha_nacimiento { get; set; }
 
-        public string ? Correo { get; set; }
+		public string ? Correo { get; set; }
     }
 }
