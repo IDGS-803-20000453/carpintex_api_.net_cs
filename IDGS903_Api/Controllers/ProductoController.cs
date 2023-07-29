@@ -7,7 +7,7 @@ namespace IDGS903_Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController : Controller
+    public class ProductoController : ControllerBase
     {
 
         private readonly AppDbContext _context;
