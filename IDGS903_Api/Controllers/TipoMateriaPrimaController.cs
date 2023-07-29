@@ -29,7 +29,7 @@ namespace IDGS903_Api.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "TipoMateriaPrima")]
+        [HttpGet("{id}", Name = "TipoMateria")]
         public ActionResult Get(int id)
         {
             try
