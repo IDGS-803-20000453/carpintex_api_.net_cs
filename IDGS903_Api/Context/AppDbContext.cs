@@ -18,6 +18,7 @@ namespace IDGS903_Api.Context
         public DbSet<materiaPrima> materiaPrima { get; set; }
         public DbSet<Producto> producto { get; set; }
         public DbSet<Gasto_Materia_Prima> gasto_Materia_Primas {get; set;}
+        public DbSet<compras> compras { get; set; }
         
     }
 }
