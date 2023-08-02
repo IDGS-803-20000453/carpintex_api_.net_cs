@@ -13,5 +13,8 @@ namespace IDGS903_Api.Context
         public DbSet<empleado> empleado { get; set; }
         //public DbSet<empleados> empleados { get; set; }
         public DbSet<proveedor> proveedor { get; set; }
+
+        public DbSet<Usuario> usuario { get; set; }
+        public DbSet<Rol> rol { get; set; }
     }
 }
