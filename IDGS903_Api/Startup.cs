@@ -19,7 +19,7 @@ namespace IDGS903_Api
 				<string>("frontend_url");
 				options.AddDefaultPolicy(builder =>
 				{
-					builder.WithOrigins("http://localhost:4200").
+					builder.WithOrigins("http://192.168.137.1:4200").
 					AllowAnyMethod().AllowAnyHeader();
 
 				});
@@ -30,11 +30,20 @@ namespace IDGS903_Api
 				options.UseSqlServer(Configuration.GetConnectionString("conexion"))
 
 				);
+
+			services.AddHttpClient("Insecure")
+			.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+			{
+				ServerCertificateCustomValidationCallback = (sender, certificate, chain, sslPolicyErrors) =>
+				{
+					return true; // Aceptar todos los certificados, incluso los no válidos.
+				}
+			});
 		}
 
 		public void Configure(IApplicationBuilder app, IHostApplicationLifetime lifetime)
 		{
-
+			app.UseHttpsRedirection();
 		}
 	}
 }

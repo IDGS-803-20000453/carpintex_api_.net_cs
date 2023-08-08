@@ -2,8 +2,8 @@ using IDGS903_Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var startup = new Startup(builder.Configuration);  // Implementado
-startup.ConfigureServices(builder.Services);  // Implementado
+var startup = new Startup(builder.Configuration);
+startup.ConfigureServices(builder.Services);
 
 // Add services to the container.
 
@@ -14,19 +14,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-startup.Configure(app, app.Lifetime);  // Implementado
+startup.Configure(app, app.Lifetime);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
+
+	app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors(); // Implementado
+
 app.Run();
