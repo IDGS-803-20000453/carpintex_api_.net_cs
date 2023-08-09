@@ -14,6 +14,8 @@ namespace IDGS903_Api.Models
 		public string ? Ciudad { get; set; }
 		public string ? PasswordUsuario { get; set; }
 		public Boolean ? Activo { get; set; }
+		public int? Rol_id { get; set; }
+
 
 	}
 }
