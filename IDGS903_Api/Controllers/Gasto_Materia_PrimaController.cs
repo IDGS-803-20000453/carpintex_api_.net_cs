@@ -21,7 +21,7 @@ namespace IDGS903_Api.Controllers
         {
             try
             {
-                return Ok(_context.gasto_Materia_Primas.ToList());
+                return Ok(_context.gasto_Materia_Prima.ToList());
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace IDGS903_Api.Controllers
             try
             {
 
-                var gastoMateriaPrima = _context.gasto_Materia_Primas.FirstOrDefault(x => x.Id == id);
+                var gastoMateriaPrima = _context.gasto_Materia_Prima.FirstOrDefault(x => x.Id == id);
 
                 if (gastoMateriaPrima == null)
                 {
@@ -57,10 +57,11 @@ namespace IDGS903_Api.Controllers
 
             try
             {
-                _context.gasto_Materia_Primas.Add(gasto_Materia_Prima);
+                _context.gasto_Materia_Prima.Add(gasto_Materia_Prima);
                 _context.SaveChanges();
                 return CreatedAtRoute("Gasto_Materia_Prima", new { id = gasto_Materia_Prima.Id }, gasto_Materia_Prima);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -97,14 +98,14 @@ namespace IDGS903_Api.Controllers
         {
             try
             {
-                var gasto_Materia_Prima = _context.gasto_Materia_Primas.FirstOrDefault(p => p.Id == id);
+                var gasto_Materia_Prima = _context.gasto_Materia_Prima.FirstOrDefault(p => p.Id == id);
 
                 if (gasto_Materia_Prima == null)
                 {
                     return NotFound();
                 }
 
-                _context.gasto_Materia_Primas.Remove(gasto_Materia_Prima);
+                _context.gasto_Materia_Prima.Remove(gasto_Materia_Prima);
                 _context.SaveChanges();
 
                 return Ok(id);

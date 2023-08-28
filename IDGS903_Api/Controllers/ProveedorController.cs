@@ -112,5 +112,46 @@ namespace IDGS903_Api.Controllers
 				return BadRequest(ex.Message);
 			}
 		}
+
+		[HttpGet("{id}/canDelete")]
+		public ActionResult CanDelete(int id)
+		{
+			try
+			{
+				// Verificar si el proveedor existe
+				var proveedor = _context.proveedor.Find(id);
+				if (proveedor == null)
+				{
+					return NotFound(new { canDelete = false, message = "Proveedor no encontrado" });
+				}
+
+				// Verificar si el proveedor tiene compras
+				var proveedorHasCompras = _context.compras.Any(x => x.Proveedor_id == id);
+
+				// Verificar si el proveedor está vinculado a materia prima
+				var proveedorHasMateriaPrima = _context.materiaPrima.Any(x => x.Proveedor_id == id);
+
+				// El proveedor puede ser eliminado si no tiene compras ni está vinculado a materia prima
+				if (!proveedorHasCompras && !proveedorHasMateriaPrima)
+				{
+					return Ok(new { canDelete = true });
+				}
+
+				string message = "vinculado con ";
+				if (proveedorHasCompras) message += "compras ";
+				if (proveedorHasMateriaPrima) message += "y materia prima";
+
+				return Ok(new { canDelete = false, message });
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.Message);
+			}
+		}
+
+
+
+
+
 	}
 }

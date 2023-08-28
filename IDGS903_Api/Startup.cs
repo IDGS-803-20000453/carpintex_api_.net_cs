@@ -31,6 +31,12 @@ namespace IDGS903_Api
 
 				);
 
+			// Segunda conexión
+			services.AddDbContext<AppDbContext2>(
+				options =>
+				options.UseSqlServer(Configuration.GetConnectionString("conexion2"))
+			);
+
 			services.AddHttpClient("Insecure")
 			.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
 			{
