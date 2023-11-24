@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IDGS903_Api.Controllers
 {
+    /* ... 
 
     [Route("api/[controller]")]
     [ApiController]
@@ -117,5 +118,5 @@ namespace IDGS903_Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-    }
+    }*/
 }
